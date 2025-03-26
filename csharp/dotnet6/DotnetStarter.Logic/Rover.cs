@@ -1,23 +1,9 @@
 using System.Collections.Generic;
+using DotnetStarter.Logic;
 
 public class Rover
 {
-    private List<string> _orientations;
-    private int _orientationIndex;
-
-    private string _orientation
-    {
-        get
-        {
-            return _orientations[_orientationIndex];
-        }
-    }
-
-    public Rover()
-    {
-        _orientations = new List<string>() { "N", "W", "S", "E"};
-        _orientationIndex = 0;
-    }
+    private Orientation _facing = new North();
     
     public IEnumerable<char> ExecuteCommand(string s)
     {
@@ -28,30 +14,13 @@ public class Rover
                 case 'M':
                     return "0:1:N";
                 case 'L':
-                    TurnLeft();
+                    _facing = _facing.TurnLeft();
                     break;
                 case 'R':
-                    TurnRIght();
+                    _facing = _facing.TurnRight();
                     break;
             }
         }
-        return "0:0:" + _orientation;
-    }
-
-    private void TurnRIght()
-    {
-        _orientationIndex--;
-        WrapAroundOrientation();
-    }
-
-    private void TurnLeft()
-    {
-        _orientationIndex++;
-        WrapAroundOrientation();
-    }
-
-    private void WrapAroundOrientation()
-    {
-        _orientationIndex = (_orientationIndex + 4) % 4;
+        return "0:0:" + _facing;
     }
 }
