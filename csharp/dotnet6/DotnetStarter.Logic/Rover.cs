@@ -29,6 +29,7 @@ public class Rover
                     return "0:1:N";
                 case 'L':
                     _orientationIndex++;
+                    WrapAroundOrientation();
                     break;
                 case 'R':
                     _orientationIndex--;
