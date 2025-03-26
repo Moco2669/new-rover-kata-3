@@ -7,8 +7,16 @@ public class Rover
     private Orientation _facing = new North();
     private int _xPos = 0;
     private int _yPos = 0;
-    
-    public IEnumerable<char> ExecuteCommand(string commands)
+
+    private string Position
+    {
+        get
+        {
+            return _xPos + ":" + _yPos + ":" + _facing;
+        }
+    }
+
+    public string ExecuteCommand(string commands)
     {
         foreach (char command in commands)
         {
@@ -27,6 +35,6 @@ public class Rover
                     break;
             }
         }
-        return _xPos + ":"+ _yPos + ":" + _facing;
+        return Position;
     }
 }
