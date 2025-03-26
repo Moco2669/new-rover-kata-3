@@ -28,16 +28,26 @@ public class Rover
                 case 'M':
                     return "0:1:N";
                 case 'L':
-                    _orientationIndex++;
-                    WrapAroundOrientation();
+                    TurnLeft();
                     break;
                 case 'R':
-                    _orientationIndex--;
-                    WrapAroundOrientation();
+                    TurnRIght();
                     break;
             }
         }
         return "0:0:" + _orientation;
+    }
+
+    private void TurnRIght()
+    {
+        _orientationIndex--;
+        WrapAroundOrientation();
+    }
+
+    private void TurnLeft()
+    {
+        _orientationIndex++;
+        WrapAroundOrientation();
     }
 
     private void WrapAroundOrientation()
