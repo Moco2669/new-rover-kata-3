@@ -26,6 +26,13 @@ public class RoverTest
         Rover rover = new();
         Assert.Equal("0:0:S", rover.ExecuteCommand("LL"));
     }
+
+    [Fact]
+    public void RoverTurnsEastTurningRight()
+    {
+        Rover rover = new();
+        Assert.Equal("0:0:E", rover.ExecuteCommand("R"));
+    }
 }
 
 public class Rover
@@ -43,7 +50,7 @@ public class Rover
 
     public Rover()
     {
-        _orientations = new List<string>() { "N", "W", "S" };
+        _orientations = new List<string>() { "N", "W", "S", "E"};
         _orientationIndex = 0;
     }
     
@@ -58,8 +65,17 @@ public class Rover
                 case 'L':
                     _orientationIndex++;
                     break;
+                case 'R':
+                    _orientationIndex--;
+                    WrapAroundOrientation();
+                    break;
             }
         }
         return "0:0:" + _orientation;
+    }
+
+    private void WrapAroundOrientation()
+    {
+        _orientationIndex = (_orientationIndex + 4) % 4;
     }
 }
