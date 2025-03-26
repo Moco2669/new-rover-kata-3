@@ -61,4 +61,11 @@ public class RoverTest
         Rover rover = new();
         Assert.Equal("0:0:N", rover.ExecuteCommand("RRRR"));
     }
+
+    [Fact]
+    public void RoverFacesEastTurningLeft()
+    {
+        Rover rover = new();
+        Assert.Equal("0:0:E", rover.ExecuteCommand("LLL"));
+    }
 }
