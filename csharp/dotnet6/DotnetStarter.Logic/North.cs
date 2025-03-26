@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics.Metrics;
 using System.Xml;
 
@@ -13,6 +14,11 @@ public class North : Orientation
     public override Orientation TurnRight()
     {
         return new East();
+    }
+
+    public override (int, int) Step()
+    {
+        return (0, 1);
     }
 
     public override string ToString()
@@ -33,6 +39,11 @@ public class West : Orientation
         return new North();
     }
 
+    public override (int, int) Step()
+    {
+        throw new NotImplementedException();
+    }
+
     public override string ToString()
     {
         return "W";
@@ -51,6 +62,11 @@ public class South : Orientation
         return new West();
     }
 
+    public override (int, int) Step()
+    {
+        throw new NotImplementedException();
+    }
+
     public override string ToString()
     {
         return "S";
@@ -67,6 +83,11 @@ public class East : Orientation
     public override Orientation TurnRight()
     {
         return new South();
+    }
+
+    public override (int, int) Step()
+    {
+        return (1, 0);
     }
 
     public override string ToString()

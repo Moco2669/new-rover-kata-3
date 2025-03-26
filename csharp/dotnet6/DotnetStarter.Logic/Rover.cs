@@ -5,6 +5,8 @@ namespace DotnetStarter.Logic;
 public class Rover
 {
     private Orientation _facing = new North();
+    private int _xPos = 0;
+    private int _yPos = 0;
     
     public IEnumerable<char> ExecuteCommand(string commands)
     {
@@ -13,7 +15,10 @@ public class Rover
             switch (command)
             {
                 case 'M':
-                    return "0:1:N";
+                    (int xIncrement, int yIncrement) = _facing.Step();
+                    _xPos += xIncrement;
+                    _yPos += yIncrement;
+                    break;
                 case 'L':
                     _facing = _facing.TurnLeft();
                     break;
@@ -22,6 +27,6 @@ public class Rover
                     break;
             }
         }
-        return "0:0:" + _facing;
+        return _xPos + ":"+ _yPos + ":" + _facing;
     }
 }
