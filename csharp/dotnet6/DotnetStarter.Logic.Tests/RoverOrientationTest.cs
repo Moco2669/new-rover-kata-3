@@ -4,15 +4,8 @@ using Xunit;
 
 namespace DotnetStarter.Logic.Tests;
 
-public class RoverTest
+public class RoverOrientationTest
 {
-    [Fact]
-    public void RoverMoves()
-    {
-        Rover rover = new();
-        Assert.Equal("0:1:N", rover.ExecuteCommand("M"));
-    }
-
     [Fact]
     public void RoverTurnsWest()
     {
