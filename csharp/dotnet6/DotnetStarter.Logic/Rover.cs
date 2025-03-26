@@ -1,15 +1,16 @@
 using System.Collections.Generic;
-using DotnetStarter.Logic;
+
+namespace DotnetStarter.Logic;
 
 public class Rover
 {
     private Orientation _facing = new North();
     
-    public IEnumerable<char> ExecuteCommand(string s)
+    public IEnumerable<char> ExecuteCommand(string commands)
     {
-        foreach (char c in s)
+        foreach (char command in commands)
         {
-            switch (c)
+            switch (command)
             {
                 case 'M':
                     return "0:1:N";
