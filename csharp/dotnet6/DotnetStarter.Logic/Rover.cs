@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace DotnetStarter.Logic;
@@ -7,6 +8,9 @@ public class Rover
     private Orientation _facing = new North();
     private int _xPos = 0;
     private int _yPos = 0;
+
+    private int _gridXSize = Int32.MaxValue;
+    private int _gridYSize = Int32.MaxValue;
 
     private string Position
     {
@@ -26,6 +30,10 @@ public class Rover
                     (int xIncrement, int yIncrement) = _facing.Step();
                     _xPos += xIncrement;
                     _yPos += yIncrement;
+                    if (_yPos > _gridYSize)
+                    {
+                        _yPos = 0;
+                    }
                     break;
                 case 'L':
                     _facing = _facing.TurnLeft();
@@ -36,5 +44,11 @@ public class Rover
             }
         }
         return Position;
+    }
+
+    public void PutOnGrid(int gridXSize, int gridYSize)
+    {
+        _gridXSize = gridXSize;
+        _gridYSize = gridYSize;
     }
 }
