@@ -40,10 +40,13 @@ public class Rover
                     {
                         _yPos = 0;
                     }
-
                     if (_xPos > _gridXSize)
                     {
                         _xPos = 0;
+                    }
+                    if (_yPos < 0)
+                    {
+                        _yPos = _gridYSize;
                     }
                     break;
                 case 'L':
