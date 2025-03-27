@@ -9,56 +9,56 @@ public class RoverOrientationTest
     [Fact]
     public void RoverTurnsWest()
     {
-        Rover rover = new();
+        Rover rover = RoverBuilder.CreateRover();
         Assert.Equal("0:0:W", rover.ExecuteCommand("L"));
     }
 
     [Fact]
     public void RoverTurnsSouth()
     {
-        Rover rover = new();
+        Rover rover = RoverBuilder.CreateRover();
         Assert.Equal("0:0:S", rover.ExecuteCommand("LL"));
     }
 
     [Fact]
     public void RoverTurnsEastTurningRight()
     {
-        Rover rover = new();
+        Rover rover = RoverBuilder.CreateRover();
         Assert.Equal("0:0:E", rover.ExecuteCommand("R"));
     }
 
     [Fact]
     public void RoverWrapsAroundTurningLeft()
     {
-        Rover rover = new();
+        Rover rover = RoverBuilder.CreateRover();
         Assert.Equal("0:0:N", rover.ExecuteCommand("LLLL"));
     }
 
     [Fact]
     public void RoverFacesSouthTurningRight()
     {
-        Rover rover = new();
+        Rover rover = RoverBuilder.CreateRover();
         Assert.Equal("0:0:S", rover.ExecuteCommand("RR"));
     }
 
     [Fact]
     public void RoverFacesWestTurningRight()
     {
-        Rover rover = new();
+        Rover rover = RoverBuilder.CreateRover();
         Assert.Equal("0:0:W", rover.ExecuteCommand("RRR"));
     }
 
     [Fact]
     public void RoverWrapsAroundTurningRight()
     {
-        Rover rover = new();
+        Rover rover = RoverBuilder.CreateRover();
         Assert.Equal("0:0:N", rover.ExecuteCommand("RRRR"));
     }
 
     [Fact]
     public void RoverFacesEastTurningLeft()
     {
-        Rover rover = new();
+        Rover rover = RoverBuilder.CreateRover();
         Assert.Equal("0:0:E", rover.ExecuteCommand("LLL"));
     }
 }

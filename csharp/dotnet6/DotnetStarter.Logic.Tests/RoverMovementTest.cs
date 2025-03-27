@@ -4,6 +4,9 @@ namespace DotnetStarter.Logic.Tests;
 
 public class RoverMovementTest
 {
+    private const int gridXSize = 7;
+    private const int gridYSize = 8;
+    
     private const string move = "M";
     private const string turnEastAndMove = "RM";
     private const string moveNorthAndBackSouth = "MMLLM";
@@ -12,28 +15,28 @@ public class RoverMovementTest
     [Fact]
     public void RoverMovesNorth()
     {
-        Rover rover = new();
+        Rover rover = RoverBuilder.CreateRover();
         Assert.Equal("0:1:N", rover.ExecuteCommand(move));
     }
 
     [Fact]
     public void RoverMovesEast()
     {
-        Rover rover = new();
+        Rover rover = RoverBuilder.CreateRover();
         Assert.Equal("1:0:E", rover.ExecuteCommand(turnEastAndMove));
     }
 
     [Fact]
     public void RoverMovesSouth()
     {
-        Rover rover = new();
+        Rover rover = RoverBuilder.CreateRover();
         Assert.Equal("0:1:S", rover.ExecuteCommand(moveNorthAndBackSouth));
     }
 
     [Fact]
     public void RoverMovesWest()
     {
-        Rover rover = new();
+        Rover rover = RoverBuilder.CreateRover();
         Assert.Equal("1:0:W", rover.ExecuteCommand(moveEastAndBackWest));
     }
 }

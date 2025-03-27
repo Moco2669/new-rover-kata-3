@@ -12,8 +12,7 @@ public class RoverGridWrappingTest
     [Fact]
     public void RoverWrapsAroundGoingNorth()
     {
-        Rover rover = new Rover();
-        rover.PutOnGrid(gridXSize, gridYSize);
+        Rover rover = new Rover(gridXSize, gridYSize);
         Assert.Equal("0:0:N", rover.ExecuteCommand(goNorthOverGridLimit));
     }
 }

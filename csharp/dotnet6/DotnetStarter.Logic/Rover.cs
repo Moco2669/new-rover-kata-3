@@ -9,8 +9,14 @@ public class Rover
     private int _xPos = 0;
     private int _yPos = 0;
 
-    private int _gridXSize = Int32.MaxValue;
-    private int _gridYSize = Int32.MaxValue;
+    private int _gridXSize;
+    private int _gridYSize;
+
+    public Rover(int GridXSize, int GridYSize)
+    {
+        _gridXSize = GridXSize;
+        _gridYSize = GridYSize;
+    }
 
     private string Position
     {
