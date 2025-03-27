@@ -4,9 +4,6 @@ namespace DotnetStarter.Logic.Tests;
 
 public class RoverMovementTest
 {
-    private const int gridXSize = 7;
-    private const int gridYSize = 8;
-    
     private const string move = "M";
     private const string turnEastAndMove = "RM";
     private const string moveNorthAndBackSouth = "MMLLM";
