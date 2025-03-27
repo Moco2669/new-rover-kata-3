@@ -1,28 +1,24 @@
-using System;
-using System.Diagnostics.Metrics;
-using System.Xml;
-
 namespace DotnetStarter.Logic;
 
-public class North : Orientation
+public class East : Orientation
 {
     public override Orientation TurnLeft()
     {
-        return new West();
+        return new North();
     }
 
     public override Orientation TurnRight()
     {
-        return new East();
+        return new South();
     }
 
     public override (int, int) Step()
     {
-        return (0, 1);
+        return (1, 0);
     }
 
     public override string ToString()
     {
-        return "N";
+        return "E";
     }
 }
