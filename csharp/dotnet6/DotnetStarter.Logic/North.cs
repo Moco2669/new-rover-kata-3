@@ -41,7 +41,7 @@ public class West : Orientation
 
     public override (int, int) Step()
     {
-        throw new NotImplementedException();
+        return (-1, 0);
     }
 
     public override string ToString()
