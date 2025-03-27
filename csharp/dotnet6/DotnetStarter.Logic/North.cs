@@ -64,7 +64,7 @@ public class South : Orientation
 
     public override (int, int) Step()
     {
-        throw new NotImplementedException();
+        return (0, -1);
     }
 
     public override string ToString()

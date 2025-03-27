@@ -6,6 +6,7 @@ public class RoverMovementTest
 {
     private const string move = "M";
     private const string turnEastAndMove = "RM";
+    private const string moveNorthAndBackSouth = "MMLLM";
     
     [Fact]
     public void RoverMovesNorth()
@@ -19,5 +20,12 @@ public class RoverMovementTest
     {
         Rover rover = new();
         Assert.Equal("1:0:E", rover.ExecuteCommand(turnEastAndMove));
+    }
+
+    [Fact]
+    public void RoverMovesSouth()
+    {
+        Rover rover = new();
+        Assert.Equal("0:1:S", rover.ExecuteCommand(moveNorthAndBackSouth));
     }
 }
