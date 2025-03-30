@@ -12,19 +12,13 @@ public class Rover
     private int _gridXSize;
     private int _gridYSize;
 
-    public Rover(int GridXSize, int GridYSize)
+    public Rover(int gridXSize, int gridYSize)
     {
-        _gridXSize = GridXSize;
-        _gridYSize = GridYSize;
+        _gridXSize = gridXSize;
+        _gridYSize = gridYSize;
     }
 
-    private string Position
-    {
-        get
-        {
-            return _xPos + ":" + _yPos + ":" + _facing;
-        }
-    }
+    private string Position => _xPos + ":" + _yPos + ":" + _facing;
 
     public string ExecuteCommand(string commands)
     {
@@ -63,11 +57,5 @@ public class Rover
             }
         }
         return Position;
-    }
-
-    public void PutOnGrid(int gridXSize, int gridYSize)
-    {
-        _gridXSize = gridXSize;
-        _gridYSize = gridYSize;
     }
 }
