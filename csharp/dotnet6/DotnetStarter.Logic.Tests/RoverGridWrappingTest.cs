@@ -7,6 +7,7 @@ public class RoverGridWrappingTest
     private const string goNorthOverGridLimit = "MMMMMMMMM";
     private const string goEastOverGridLimit = "RMMMMMMMM";
     private const string goSouthOverGridLimit = "RRM";
+    private const string goWestOverGridLimit = "LM";
     
     [Fact]
     public void RoverWrapsAroundGoingNorth()
@@ -27,5 +28,12 @@ public class RoverGridWrappingTest
     {
         Rover rover = RoverBuilder.CreateRover();
         Assert.Equal("0:8:S", rover.ExecuteCommand(goSouthOverGridLimit));
+    }
+
+    [Fact]
+    public void RoverWrapsAroundGoingWest()
+    {
+        Rover rover = RoverBuilder.CreateRover();
+        Assert.Equal("7:0:W", rover.ExecuteCommand(goWestOverGridLimit));
     }
 }

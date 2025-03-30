@@ -48,6 +48,11 @@ public class Rover
                     {
                         _yPos = _gridYSize;
                     }
+
+                    if (_xPos < 0)
+                    {
+                        _xPos = _gridXSize;
+                    }
                     break;
                 case 'L':
                     _facing = _facing.TurnLeft();
