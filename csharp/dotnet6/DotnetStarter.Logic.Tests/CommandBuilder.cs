@@ -2,17 +2,17 @@ namespace DotnetStarter.Logic.Tests;
 
 public class CommandBuilder
 {
-    private string command = "";
+    private string _command = "";
 
     public CommandBuilder TurnLeft()
     {
-        command += "L";
+        _command += "L";
         return this;
     }
 
     public CommandBuilder TurnRight()
     {
-        command += "R";
+        _command += "R";
         return this;
     }
 
@@ -20,7 +20,7 @@ public class CommandBuilder
     {
         for (int i = 0; i < times; ++i)
         {
-            command += "M";
+            _command += "M";
         }
 
         return this;
@@ -28,6 +28,6 @@ public class CommandBuilder
 
     public string Build()
     {
-        return command;
+        return _command;
     }
 }
