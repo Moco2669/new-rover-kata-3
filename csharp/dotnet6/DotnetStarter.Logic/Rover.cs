@@ -62,32 +62,15 @@ public class Rover
             switch (command)
             {
                 case 'M':
-                    (int xIncrement, int yIncrement) = _facing.Step();
-                    int xTemp = _xPos + xIncrement;
-                    int yTemp = _yPos + yIncrement;
-                    if (yTemp > _gridYSize)
-                    {
-                        yTemp = 0;
-                    }
-                    if (xTemp > _gridXSize)
-                    {
-                        xTemp = 0;
-                    }
-                    if (yTemp < 0)
-                    {
-                        yTemp = _gridYSize;
-                    }
-                    if (xTemp < 0)
-                    {
-                        xTemp = _gridXSize;
-                    }
+                    (int nextX, int nextY) = GetNextField();
 
-                    if (IsFieldObstacle(xTemp, yTemp))
+                    if (IsFieldObstacle(nextX, nextY))
                     {
                         return Position;
                     }
-                    _xPos = xTemp;
-                    _yPos = yTemp;
+                    
+                    _xPos = nextX;
+                    _yPos = nextY;
                     break;
                 case 'L':
                     _facing = _facing.TurnLeft();
@@ -117,9 +100,9 @@ public class Rover
 
     private bool IsFieldObstacle(int x, int y)
     {
-        if (_obstacles.ContainsKey(x))
+        if (_obstacles.TryGetValue(x, out var obstacleY))
         {
-            return _obstacles[x].Contains(y);
+            return obstacleY.Contains(y);
         }
 
         return false;
