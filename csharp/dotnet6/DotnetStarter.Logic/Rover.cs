@@ -62,13 +62,12 @@ public class Rover
             switch (command)
             {
                 case 'M':
-                    (int nextX, int nextY) = GetNextField();
-
-                    if (IsFieldObstacle(nextX, nextY))
+                    if (FacingObstacle)
                     {
                         return Position;
                     }
-                    
+
+                    (int nextX, int nextY) = GetNextField();
                     _xPos = nextX;
                     _yPos = nextY;
                     break;
