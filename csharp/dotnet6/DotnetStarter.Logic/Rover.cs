@@ -28,22 +28,8 @@ public class Rover
         (int xIncrement, int yIncrement) = _facing.Step();
         int xNext = _xPos + xIncrement;
         int yNext = _yPos + yIncrement;
-        if (yNext > _gridYSize)
-        {
-            yNext = 0;
-        }
-        if (xNext > _gridXSize)
-        {
-            xNext = 0;
-        }
-        if (yNext < 0)
-        {
-            yNext = _gridYSize;
-        }
-        if (xNext < 0)
-        {
-            xNext = _gridXSize;
-        }
+        xNext = WrapCoordinates(xNext, _gridXSize);
+        yNext = WrapCoordinates(yNext, _gridYSize);
         return (xNext, yNext);
     }
 
@@ -80,6 +66,20 @@ public class Rover
             }
         }
         return Position;
+    }
+
+    private int WrapCoordinates(int coordinate, int maxCoordinate)
+    {
+        if (coordinate > maxCoordinate)
+        {
+            coordinate = 0;
+        }
+        if (coordinate < 0)
+        {
+            coordinate = maxCoordinate;
+        }
+
+        return coordinate;
     }
 
     public Rover AddObstacle(int obstacleXPosition, int obstacleYPosition)
