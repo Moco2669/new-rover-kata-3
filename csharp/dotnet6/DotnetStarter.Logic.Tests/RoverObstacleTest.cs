@@ -20,6 +20,9 @@ public class RoverObstacleTest
 
     private readonly string moveToObstacleFromEast =
         new CommandBuilder().MoveTimes(obstacleYPosition).TurnRight().MoveTimes(obstacleXPosition - 1).Build();
+
+    private readonly string moveToObstacleFromWest =
+        new CommandBuilder().MoveTimes(obstacleYPosition).TurnLeft().MoveTimes(gridXSize - obstacleXPosition).Build();
     
     private readonly string obstaclePositionFromNorth =
         obstacleIndication + separator +
@@ -38,6 +41,12 @@ public class RoverObstacleTest
         (obstacleXPosition - 1) + separator +
         obstacleYPosition + separator +
         new East();
+
+    private readonly string obstaclePositionFromWest =
+        obstacleIndication + separator +
+        (obstacleXPosition + 1) + separator +
+        obstacleYPosition + separator +
+        new West();
     
     [Fact]
     public void RoverReportsObstacleFromNorth()
@@ -58,5 +67,12 @@ public class RoverObstacleTest
     {
         Rover rover = RoverBuilder.CreateRover(gridXSize, gridYSize).AddObstacle(obstacleXPosition, obstacleYPosition);
         Assert.Equal(obstaclePositionFromEast, rover.ExecuteCommand(moveToObstacleFromEast));
+    }
+
+    [Fact]
+    public void RoverReportsObstacleFromWest()
+    {
+        Rover rover = RoverBuilder.CreateRover(gridXSize, gridYSize).AddObstacle(obstacleXPosition, obstacleYPosition);
+        Assert.Equal(obstaclePositionFromWest, rover.ExecuteCommand(moveToObstacleFromWest));
     }
 }
