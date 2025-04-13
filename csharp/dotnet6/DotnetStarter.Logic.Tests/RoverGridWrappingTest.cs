@@ -4,42 +4,42 @@ namespace DotnetStarter.Logic.Tests;
 
 public class RoverGridWrappingTest
 {
-    private const int gridXSize = 6;
-    private const int gridYSize = 10;
-    private readonly string goNorthOverGridLimit = new CommandBuilder().MoveTimes(gridYSize + 1).Build();
-    private readonly string goEastOverGridLimit = new CommandBuilder().TurnRight().MoveTimes(gridXSize + 1).Build();
-    private readonly string goSouthOverGridLimit = new CommandBuilder().TurnRight().TurnRight().MoveTimes(1).Build();
-    private readonly string goWestOverGridLimit = new CommandBuilder().TurnLeft().MoveTimes(1).Build();
-    private readonly string startingPositionFacingNorth = "0:0:" + new North();
-    private readonly string startingPositionFacingEast = "0:0:" + new East();
-    private readonly string maxYCoordinateFacingSouth = "0:" + gridYSize + ":" + new South();
-    private readonly string maxXCoordinateFacingWest = gridXSize + ":0:" + new West();
+    private const int GridXSize = 6;
+    private const int GridYSize = 10;
+    private readonly string _goNorthOverGridLimit = new CommandBuilder().MoveTimes(GridYSize + 1).Build();
+    private readonly string _goEastOverGridLimit = new CommandBuilder().TurnRight().MoveTimes(GridXSize + 1).Build();
+    private readonly string _goSouthOverGridLimit = new CommandBuilder().TurnRight().TurnRight().MoveTimes(1).Build();
+    private readonly string _goWestOverGridLimit = new CommandBuilder().TurnLeft().MoveTimes(1).Build();
+    private readonly string _startingPositionFacingNorth = "0:0:" + new North();
+    private readonly string _startingPositionFacingEast = "0:0:" + new East();
+    private readonly string _maxYCoordinateFacingSouth = "0:" + GridYSize + ":" + new South();
+    private readonly string _maxXCoordinateFacingWest = GridXSize + ":0:" + new West();
     
     [Fact]
     public void RoverWrapsAroundGoingNorth()
     {
-        Rover rover = RoverBuilder.CreateRover(gridXSize:gridXSize, gridYSize:gridYSize);
-        Assert.Equal(startingPositionFacingNorth, rover.ExecuteCommand(goNorthOverGridLimit));
+        Rover rover = RoverBuilder.CreateRover(gridXSize:GridXSize, gridYSize:GridYSize);
+        Assert.Equal(_startingPositionFacingNorth, rover.ExecuteCommand(_goNorthOverGridLimit));
     }
 
     [Fact]
     public void RoverWrapsAroundGoingEast()
     {
-        Rover rover = RoverBuilder.CreateRover(gridXSize:gridXSize, gridYSize:gridYSize);
-        Assert.Equal(startingPositionFacingEast, rover.ExecuteCommand(goEastOverGridLimit));
+        Rover rover = RoverBuilder.CreateRover(gridXSize:GridXSize, gridYSize:GridYSize);
+        Assert.Equal(_startingPositionFacingEast, rover.ExecuteCommand(_goEastOverGridLimit));
     }
 
     [Fact]
     public void RoverWrapsAroundGoingSouth()
     {
-        Rover rover = RoverBuilder.CreateRover(gridXSize:gridXSize, gridYSize:gridYSize);
-        Assert.Equal(maxYCoordinateFacingSouth, rover.ExecuteCommand(goSouthOverGridLimit));
+        Rover rover = RoverBuilder.CreateRover(gridXSize:GridXSize, gridYSize:GridYSize);
+        Assert.Equal(_maxYCoordinateFacingSouth, rover.ExecuteCommand(_goSouthOverGridLimit));
     }
 
     [Fact]
     public void RoverWrapsAroundGoingWest()
     {
-        Rover rover = RoverBuilder.CreateRover(gridXSize:gridXSize, gridYSize:gridYSize);
-        Assert.Equal(maxXCoordinateFacingWest, rover.ExecuteCommand(goWestOverGridLimit));
+        Rover rover = RoverBuilder.CreateRover(gridXSize:GridXSize, gridYSize:GridYSize);
+        Assert.Equal(_maxXCoordinateFacingWest, rover.ExecuteCommand(_goWestOverGridLimit));
     }
 }
