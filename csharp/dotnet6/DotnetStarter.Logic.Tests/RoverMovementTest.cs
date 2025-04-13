@@ -4,36 +4,39 @@ namespace DotnetStarter.Logic.Tests;
 
 public class RoverMovementTest
 {
-    private const string move = "M";
-    private const string turnEastAndMove = "RM";
-    private const string moveNorthAndBackSouth = "MMLLM";
-    private const string moveEastAndBackWest = "RMMLLM";
+    private const string Move = "M";
+    private const string TurnEastAndMove = "RM";
+    private const string MoveNorthAndBackSouth = "MMLLM";
+    private const string MoveEastAndBackWest = "RMMLLM";
+
+    private Rover _rover;
+
+    public RoverMovementTest()
+    {
+        _rover = RoverBuilder.CreateRover();
+    }
     
     [Fact]
     public void RoverMovesNorth()
     {
-        Rover rover = RoverBuilder.CreateRover();
-        Assert.Equal("0:1:N", rover.ExecuteCommand(move));
+        Assert.Equal("0:1:N", _rover.ExecuteCommand(Move));
     }
 
     [Fact]
     public void RoverMovesEast()
     {
-        Rover rover = RoverBuilder.CreateRover();
-        Assert.Equal("1:0:E", rover.ExecuteCommand(turnEastAndMove));
+        Assert.Equal("1:0:E", _rover.ExecuteCommand(TurnEastAndMove));
     }
 
     [Fact]
     public void RoverMovesSouth()
     {
-        Rover rover = RoverBuilder.CreateRover();
-        Assert.Equal("0:1:S", rover.ExecuteCommand(moveNorthAndBackSouth));
+        Assert.Equal("0:1:S", _rover.ExecuteCommand(MoveNorthAndBackSouth));
     }
 
     [Fact]
     public void RoverMovesWest()
     {
-        Rover rover = RoverBuilder.CreateRover();
-        Assert.Equal("1:0:W", rover.ExecuteCommand(moveEastAndBackWest));
+        Assert.Equal("1:0:W", _rover.ExecuteCommand(MoveEastAndBackWest));
     }
 }
