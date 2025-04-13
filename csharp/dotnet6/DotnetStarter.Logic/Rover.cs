@@ -7,19 +7,10 @@ public class Rover
 {
     private Orientation _facing = new North();
     private Field _position = new Field(0, 0);
-
-    private Field Next => GetNextField();
-
     private Grid _grid;
 
-    private bool FacingObstacle
-    {
-        get
-        {
-            Field next = GetNextField();
-            return _grid.IsFieldObstacle(Next);
-        }
-    }
+    private Field Next => GetNextField();
+    private bool FacingObstacle => _grid.IsFieldObstacle(Next);
 
     public Rover(Grid grid)
     {
