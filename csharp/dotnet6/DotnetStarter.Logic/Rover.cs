@@ -9,34 +9,29 @@ public class Rover
     private int _xPos = 0;
     private int _yPos = 0;
 
-    private int _gridXSize;
-    private int _gridYSize;
-
-    private Dictionary<int, List<int>> _obstacles = new Dictionary<int, List<int>>();
+    private Grid _grid;
 
     private bool FacingObstacle
     {
         get
         {
             (int nextX, int nextY) = GetNextField();
-            return IsFieldObstacle(nextX, nextY);
+            return _grid.IsFieldObstacle(nextX, nextY);
         }
     }
 
+    public Rover(Grid grid)
+    {
+        _grid = grid;
+    }
+    
     private (int, int) GetNextField()
     {
         (int xIncrement, int yIncrement) = _facing.Step();
         int xNext = _xPos + xIncrement;
         int yNext = _yPos + yIncrement;
-        xNext = WrapCoordinates(xNext, _gridXSize);
-        yNext = WrapCoordinates(yNext, _gridYSize);
+        (xNext, yNext) = _grid.WrapCoordinates(xNext, yNext);
         return (xNext, yNext);
-    }
-
-    public Rover(int gridXSize, int gridYSize)
-    {
-        _gridXSize = gridXSize;
-        _gridYSize = gridYSize;
     }
 
     private string Position => (FacingObstacle ? "O:" : "") + _xPos + ":" + _yPos + ":" + _facing;
@@ -48,10 +43,7 @@ public class Rover
             switch (command)
             {
                 case 'M':
-                    if (FacingObstacle)
-                    {
-                        return Position;
-                    }
+                    if (FacingObstacle) return Position;
 
                     (int nextX, int nextY) = GetNextField();
                     _xPos = nextX;
@@ -66,44 +58,5 @@ public class Rover
             }
         }
         return Position;
-    }
-
-    private int WrapCoordinates(int coordinate, int maxCoordinate)
-    {
-        if (coordinate > maxCoordinate)
-        {
-            coordinate = 0;
-        }
-        if (coordinate < 0)
-        {
-            coordinate = maxCoordinate;
-        }
-
-        return coordinate;
-    }
-
-    public Rover AddObstacle(int obstacleXPosition, int obstacleYPosition)
-    {
-        if (!_obstacles.ContainsKey(obstacleXPosition))
-        {
-            _obstacles[obstacleXPosition] = new();
-        }
-
-        if (!_obstacles[obstacleXPosition].Contains(obstacleYPosition))
-        {
-            _obstacles[obstacleXPosition].Add(obstacleYPosition);
-        }
-
-        return this;
-    }
-
-    private bool IsFieldObstacle(int x, int y)
-    {
-        if (_obstacles.TryGetValue(x, out var obstacleY))
-        {
-            return obstacleY.Contains(y);
-        }
-
-        return false;
     }
 }

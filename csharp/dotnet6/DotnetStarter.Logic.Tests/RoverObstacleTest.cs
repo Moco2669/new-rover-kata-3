@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using Xunit;
 
@@ -52,7 +53,9 @@ public class RoverObstacleTest
 
     public RoverObstacleTest()
     {
-        _rover = RoverBuilder.CreateRover(GridXSize, GridYSize).AddObstacle(ObstacleXPosition, ObstacleYPosition);
+        List<(int, int)> obstacles = new();
+        obstacles.Add((ObstacleXPosition, ObstacleYPosition));
+        _rover = new RoverBuilder().CreateRover(GridXSize, GridYSize).WithObstacles(obstacles).Build();
     }
     
     [Fact]

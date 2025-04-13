@@ -19,7 +19,7 @@ public class RoverGridWrappingTest
 
     public RoverGridWrappingTest()
     {
-        _rover = RoverBuilder.CreateRover(gridXSize:GridXSize, gridYSize:GridYSize);
+        _rover = new RoverBuilder().CreateRover(gridXSize:GridXSize, gridYSize:GridYSize).Build();
     }
     
     [Fact]

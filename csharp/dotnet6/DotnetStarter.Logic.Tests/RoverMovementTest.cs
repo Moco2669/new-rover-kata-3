@@ -13,7 +13,7 @@ public class RoverMovementTest
 
     public RoverMovementTest()
     {
-        _rover = RoverBuilder.CreateRover();
+        _rover = new RoverBuilder().CreateRover().Build();
     }
     
     [Fact]

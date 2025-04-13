@@ -10,7 +10,7 @@ public class RoverOrientationTest
 
     public RoverOrientationTest()
     {
-        _rover = RoverBuilder.CreateRover();
+        _rover = new RoverBuilder().CreateRover().Build();
     }
     
     [Fact]
