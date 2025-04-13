@@ -6,8 +6,9 @@ namespace DotnetStarter.Logic;
 public class Rover
 {
     private Orientation _facing = new North();
-    private int _xPos = 0;
-    private int _yPos = 0;
+    private Field _position = new Field(0, 0);
+
+    private Field Next => GetNextField();
 
     private Grid _grid;
 
@@ -15,8 +16,8 @@ public class Rover
     {
         get
         {
-            (int nextX, int nextY) = GetNextField();
-            return _grid.IsFieldObstacle(nextX, nextY);
+            Field next = GetNextField();
+            return _grid.IsFieldObstacle(Next);
         }
     }
 
@@ -25,16 +26,15 @@ public class Rover
         _grid = grid;
     }
     
-    private (int, int) GetNextField()
+    private Field GetNextField()
     {
-        (int xIncrement, int yIncrement) = _facing.Step();
-        int xNext = _xPos + xIncrement;
-        int yNext = _yPos + yIncrement;
-        (xNext, yNext) = _grid.WrapCoordinates(xNext, yNext);
-        return (xNext, yNext);
+        Field step = _facing.Step();
+        Field next = _position + step;
+        next = _grid.WrapCoordinates(next);
+        return next;
     }
 
-    private string Position => (FacingObstacle ? "O:" : "") + _xPos + ":" + _yPos + ":" + _facing;
+    private string Position => (FacingObstacle ? "O:" : "") + _position.X + ":" + _position.Y + ":" + _facing;
 
     public string ExecuteCommand(string commands)
     {
@@ -44,10 +44,7 @@ public class Rover
             {
                 case 'M':
                     if (FacingObstacle) return Position;
-
-                    (int nextX, int nextY) = GetNextField();
-                    _xPos = nextX;
-                    _yPos = nextY;
+                    _position = Next;
                     break;
                 case 'L':
                     _facing = _facing.TurnLeft();

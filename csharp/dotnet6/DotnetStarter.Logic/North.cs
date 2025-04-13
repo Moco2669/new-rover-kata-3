@@ -16,9 +16,9 @@ public class North : Orientation
         return new East();
     }
 
-    public override (int, int) Step()
+    public override Field Step()
     {
-        return (0, 1);
+        return new Field(0, 1);
     }
 
     public override string ToString()

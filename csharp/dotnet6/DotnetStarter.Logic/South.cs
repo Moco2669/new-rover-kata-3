@@ -12,9 +12,9 @@ public class South : Orientation
         return new West();
     }
 
-    public override (int, int) Step()
+    public override Field Step()
     {
-        return (0, -1);
+        return new Field(0, -1);
     }
 
     public override string ToString()

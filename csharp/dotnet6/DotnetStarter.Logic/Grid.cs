@@ -19,12 +19,12 @@ public class Grid
         }
     }
 
-    public (int, int) WrapCoordinates(int x, int y)
+    public Field WrapCoordinates(Field field)
     {
-        x = WrapCoordinate(x, _xSize);
-        y = WrapCoordinate(y, _ySize);
+        int x = WrapCoordinate(field.X, _xSize);
+        int y = WrapCoordinate(field.Y, _ySize);
 
-        return (x, y);
+        return new Field(x, y);
     }
 
     private int WrapCoordinate(int coordinate, int maxCoordinate)
@@ -41,11 +41,11 @@ public class Grid
         return coordinate;
     }
     
-    public bool IsFieldObstacle(int x, int y)
+    public bool IsFieldObstacle(Field field)
     {
-        if (_obstacles.TryGetValue(x, out var obstacleY))
+        if (_obstacles.TryGetValue(field.X, out var obstacleY))
         {
-            return obstacleY.Contains(y);
+            return obstacleY.Contains(field.Y);
         }
 
         return false;
